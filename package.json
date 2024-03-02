@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "nx dev inklens-app-web",
-		"test": "jest",
-		"test:watch": "jest --watch",
+		"test": "nx run-many -t test --passWithNoTests",
+		"test:watch": "nx run-many -t test --watch --passWithNoTests",
 		"format": "prettier --write './**/*.{js,jsx,ts,tsx,html,css,scss,json,md}'"
 	},
 	"private": true,

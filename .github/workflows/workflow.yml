@@ -34,22 +34,22 @@ jobs:
             - name: Run ESLint
               run: npx nx run inklens-app-web:lint
 
-    # unit-tests:
-    #     name: Run Jest Unit- and Snapshot Tests
-    #     runs-on: ubuntu-22.04
-    #     needs: eslint
-    #     strategy:
-    #         matrix:
-    #             shard: [1, 2, 3]
-    #     steps:
-    #         - uses: actions/checkout@v4
-    #         - uses: actions/setup-node@v4
-    #           with:
-    #               node-version: 18.17.0
-    #         - name: Install Dependencies
-    #           run: npm ci
-    #         - name: Run Jest Tests
-    #           run: npm test --shard=${{ matrix.shard }}/${{ strategy.job-total }} --coverage
+    unit-tests:
+        name: Run Jest Unit- and Snapshot Tests
+        runs-on: ubuntu-22.04
+        needs: eslint
+        strategy:
+            matrix:
+                shard: [1, 2, 3]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 18.17.0
+            - name: Install Dependencies
+              run: npm ci
+            - name: Run Jest Tests
+              run: npm test --shard=${{ matrix.shard }}/${{ strategy.job-total }} --coverage
 
     # e2e-tests:
     #     name: Run Cypress e2e Tests
