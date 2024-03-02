@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/cypress/**/*",
@@ -86,8 +89,12 @@
   "nxCloudAccessToken": "NzNhMTBjZWUtZGZkMC00ODM4LThjNWMtNGQ3MWE0OGQ1ZmY5fHJlYWQtd3JpdGU=",
   "tasksRunnerOptions": {
     "default": {
+      "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build-storybook"]
+        "cacheableOperations": [
+          "build-storybook"
+        ],
+        "accessToken": "MDE2NDgwNmQtNDhkNS00MTAzLThiNGEtOGFmZmQ1NGY1ZmVifHJlYWQtd3JpdGU="
       }
     }
   }
