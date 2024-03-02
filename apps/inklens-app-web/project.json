@@ -1,8 +1,8 @@
 {
-  "name": "inklens-app-web",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/inklens-app-web",
-  "projectType": "application",
-  "targets": {},
-  "tags": []
+	"name": "inklens-app-web",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/inklens-app-web",
+	"projectType": "application",
+	"targets": {},
+	"tags": []
 }

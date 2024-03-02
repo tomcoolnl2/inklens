@@ -1,10 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { Theme, Themes } from '../../src/lib/theme/theme';
 
-export function withTheme<T extends JSX.IntrinsicAttributes>(
-	WrappedComponent: FC<T>,
-	theme: Themes | string
-): FC<T> {
+export function withTheme<T extends JSX.IntrinsicAttributes>(WrappedComponent: FC<T>, theme: Themes | string): FC<T> {
 	return function (props: T): ReactElement {
 		switch (theme) {
 			case 'side-by-side': {
