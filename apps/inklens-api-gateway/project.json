@@ -1,0 +1,24 @@
+{
+	"name": "inklens-api-gateway",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/inklens-api-gateway/src",
+	"projectType": "application",
+	"targets": {
+		"serve": {
+			"executor": "@nx/js:node",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "inklens-api-gateway:build"
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "inklens-api-gateway:build:development"
+				},
+				"production": {
+					"buildTarget": "inklens-api-gateway:build:production"
+				}
+			}
+		}
+	},
+	"tags": []
+}
