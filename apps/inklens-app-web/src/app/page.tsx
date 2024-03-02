@@ -2,11 +2,6 @@ import styles from './page.module.css';
 import { Theme, Button } from '@inklens/ui'
 
 export default async function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.css file.
-   */
   return (
     <Theme>
       <div className={styles.page}>

@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    border: 10px solid teal;
+@layer base {
+    body {
+        border: 10px solid pink;
+    }
 }
