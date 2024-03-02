@@ -15,6 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@inklens/common": ["common/src/index.ts"],
 			"@inklens/ui": ["ui/src/index.ts"]
 		}
 	},
