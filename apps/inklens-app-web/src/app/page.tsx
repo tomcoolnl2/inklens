@@ -1,7 +1,9 @@
+import { Message } from '../components/Message';
 import styles from './page.module.css';
-import { Theme, Button } from '@inklens/ui';
+import { Theme } from '@inklens/ui';
 
 export default async function Index() {
+	//
 	return (
 		<Theme>
 			<div className={styles.page}>
@@ -12,7 +14,7 @@ export default async function Index() {
 								<span> Hello there, </span>
 								Welcome inklens-app-web 👋
 							</h1>
-							<Button />
+							<Message />
 						</div>
 					</div>
 				</div>
