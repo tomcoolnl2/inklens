@@ -1,4 +1,4 @@
-import { TagsApiClient } from '../api/api-tags';
+import { TagsApiClient } from '../';
 import { ApiClientError } from '../error';
 
 /**
@@ -16,7 +16,11 @@ export class ApiClient {
 	 * The client for interacting with the tags API endpoints.
 	 * @private
 	 */
-	private tags = new TagsApiClient();
+	public tags: TagsApiClient;
+
+	constructor() {
+		this.tags = new TagsApiClient();
+	}
 
 	/**
 	 * The base URL for the API, retrieved from environment variables.
@@ -45,7 +49,13 @@ export class ApiClient {
 	 */
 	public async request<T>(endpoint = '', options?: RequestInit): Promise<T> {
 		try {
-			const response = await fetch(`${this.baseUrl}/${endpoint}`, options);
+			const requestOptions = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				...options,
+			};
+			const response = await fetch(`${this.baseUrl}/${endpoint}`, requestOptions);
 			if (!response.ok) {
 				throw new ApiClientError('Request failed', response.status);
 			}

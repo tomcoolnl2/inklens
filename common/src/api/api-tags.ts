@@ -1,17 +1,16 @@
-import { ApiClient } from '../lib/api-client';
-import { Tag } from '../model';
+import { ApiClient, Model } from '../';
 
 /**
  * The TagsApiClient provides methods to interact with the tags endpoints.
  * It extends the ApiClient to utilize the common request functionality.
  */
-export class TagsApiClient extends ApiClient {
+export class TagsApiClient {
 	/**
 	 * Fetches all tags from the server.
-	 * @returns {Promise<Tag[]>} A promise that resolves to an array of Tag objects.
+	 * @returns {Promise<Model.Tag[]>} A promise that resolves to an array of Tag objects.
 	 */
-	async getAllTags(): Promise<Tag[]> {
-		return this.request<Tag[]>('tags');
+	async getAllTags(): Promise<Model.Tag[]> {
+		return ApiClient.getInstance().request<Model.Tag[]>('tags');
 	}
 
 	/**
@@ -19,21 +18,18 @@ export class TagsApiClient extends ApiClient {
 	 * @param {string} tagId The ID of the tag to retrieve.
 	 * @returns {Promise<Tag>} A promise that resolves to the Tag object.
 	 */
-	async getTagById(tagId: string): Promise<Tag> {
-		return this.request<Tag>(`tags/${tagId}`);
+	async getTagById(tagId: string): Promise<Model.Tag> {
+		return ApiClient.getInstance().request<Model.Tag>(`tags/${tagId}`);
 	}
 
 	/**
 	 * Creates a new tag on the server with the provided tag data.
-	 * @param {Tag} tagData The data for the new tag.
-	 * @returns {Promise<Tag>} A promise that resolves to the created Tag object.
+	 * @param {Model.Tag} tagData The data for the new tag.
+	 * @returns {Promise<Model.Tag>} A promise that resolves to the created Tag object.
 	 */
-	async createTag(tagData: Tag): Promise<Tag> {
-		return this.request<Tag>('tags', {
+	async createTag(tagData: Model.Tag): Promise<Model.Tag> {
+		return ApiClient.getInstance().request<Model.Tag>('tags', {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
 			body: JSON.stringify(tagData),
 		});
 	}
@@ -41,15 +37,12 @@ export class TagsApiClient extends ApiClient {
 	/**
 	 * Updates an existing tag on the server with the provided tag data.
 	 * @param {string} tagId The ID of the tag to update.
-	 * @param {Tag} tagData The new data for the tag.
-	 * @returns {Promise<Tag>} A promise that resolves to the updated Tag object.
+	 * @param {Model.Tag} tagData The new data for the tag.
+	 * @returns {Promise<Model.Tag>} A promise that resolves to the updated Tag object.
 	 */
-	async updateTag(tagId: string, tagData: Tag): Promise<Tag> {
-		return this.request<Tag>(`tags/${tagId}`, {
+	async updateTag(tagId: string, tagData: Model.Tag): Promise<Model.Tag> {
+		return ApiClient.getInstance().request<Model.Tag>(`tags/${tagId}`, {
 			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
 			body: JSON.stringify(tagData),
 		});
 	}
@@ -60,7 +53,7 @@ export class TagsApiClient extends ApiClient {
 	 * @returns {Promise<void>} A promise that resolves when the tag is successfully deleted.
 	 */
 	async deleteTag(tagId: string): Promise<void> {
-		return this.request<void>(`tags/${tagId}`, {
+		return ApiClient.getInstance().request<void>(`tags/${tagId}`, {
 			method: 'DELETE',
 		});
 	}
