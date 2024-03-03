@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "nx dev inklens-app-web",
-		"dev:backend": "nx run-many --parallel --target=serve --projects=inklens-api-gateway ",
+		"dev:backend": "nx run-many --parallel --target=serve --projects=inklens-api-gateway,inklens-api-tags",
 		"test": "nx run-many -t test --passWithNoTests",
 		"test:watch": "nx run-many -t test --watch --passWithNoTests",
 		"format": "prettier --write './**/*.{js,jsx,ts,tsx,html,css,scss,json,md}'"
