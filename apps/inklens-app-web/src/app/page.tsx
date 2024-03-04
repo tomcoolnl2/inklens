@@ -1,5 +1,6 @@
 import { Categories } from '../components/Categories';
 import { Message } from '../components/Message';
+import { Products } from '../components/Products';
 import { Tags } from '../components/Tags';
 import styles from './page.module.css';
 import { Theme } from '@inklens/ui';
@@ -25,6 +26,9 @@ export default async function Index() {
 							<br />
 							<br />
 							<Categories />
+							<br />
+							<br />
+							<Products />
 						</div>
 					</div>
 				</div>

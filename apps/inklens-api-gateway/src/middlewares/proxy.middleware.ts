@@ -8,6 +8,7 @@ export class ProxyMiddleware implements NestMiddleware {
 		const apiEndpoints = {
 			'/api/tags': { target: process.env.INKLENS_API_URL_TAGS },
 			'/api/categories': { target: process.env.INKLENS_API_URL_CATEGORIES },
+			'/api/products': { target: process.env.INKLENS_API_URL_PRODUCTS },
 		};
 
 		const proxyConfig = apiEndpoints[req.originalUrl];

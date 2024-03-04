@@ -1,6 +1,7 @@
 import { ApiClientError } from '../error';
 import { CategoriesApiClient } from './categories';
 import { TagsApiClient } from './tags';
+import { ProductsApiClient } from './products';
 
 /**
  * Represents the API client for making requests to various endpoints.
@@ -22,6 +23,11 @@ export class ApiClient {
 	 * The client for interacting with the categories API endpoint.
 	 */
 	public categories = new CategoriesApiClient();
+
+	/**
+	 * The client for interacting with the products API endpoint.
+	 */
+	public products = new ProductsApiClient();
 
 	/**
 	 * The base URL for the API, retrieved from environment variables.
@@ -56,7 +62,7 @@ export class ApiClient {
 				},
 				...options,
 			};
-			const response = await fetch(`${this.baseUrl}/${endpoint}`, requestOptions);
+			const response = await fetch(`${this.baseUrl}/api/${endpoint}`, requestOptions);
 			if (!response.ok) {
 				throw new ApiClientError('Request failed', response.status);
 			}
