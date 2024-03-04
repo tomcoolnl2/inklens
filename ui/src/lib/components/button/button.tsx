@@ -2,14 +2,14 @@ import './button.css';
 
 /* eslint-disable-next-line */
 export interface ButtonProps {
-	text: string;
+	children: React.ReactNode;
 	onClick: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
 	return (
 		<button className="button" onClick={onClick}>
-			{text}
+			{children}
 		</button>
 	);
 };

@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "nx dev inklens-app-web",
-		"dev:backend": "nx run-many --parallel --target=serve --projects=inklens-api-gateway ",
+		"dev:backend": "nx run-many --target=serve --all --maxParallel=100 --exclude=inklens-app-web",
 		"test": "nx run-many -t test --passWithNoTests",
 		"test:watch": "nx run-many -t test --watch --passWithNoTests",
 		"format": "prettier --write './**/*.{js,jsx,ts,tsx,html,css,scss,json,md}'"
@@ -12,6 +12,7 @@
 	"private": true,
 	"dependencies": {
 		"@nestjs/common": "^10.0.2",
+		"@nestjs/config": "3.2.0",
 		"@nestjs/core": "^10.0.2",
 		"@nestjs/platform-express": "^10.0.2",
 		"axios": "^1.6.0",

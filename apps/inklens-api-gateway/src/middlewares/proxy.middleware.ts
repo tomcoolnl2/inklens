@@ -4,24 +4,22 @@ import * as httpProxy from 'http-proxy-middleware';
 
 @Injectable()
 export class ProxyMiddleware implements NestMiddleware {
-	//
 	use(req: Request, res: Response, next: NextFunction) {
-		//
 		const apiEndpoints = {
-			'/api/tasks': { target: 'http://localhost:2000' },
-			'/api/products': { target: 'http://localhost:3000' },
+			'/api/tags': { target: process.env.INKLENS_API_URL_TAGS },
 		};
 
-		// Get the proxy config based on the requested endpoint
-		const proxyConfig = apiEndpoints[req.url];
+		const proxyConfig = apiEndpoints[req.originalUrl];
+		console.log('ProxyConfig:', proxyConfig, 'Original URL:', req.originalUrl);
 
 		if (!proxyConfig) {
-			// If no proxy config is found, move to the next middleware
 			return next();
 		}
 
-		// Proxy requests based on the requested endpoint
-		const proxy = httpProxy.createProxyMiddleware(proxyConfig);
+		const proxy = httpProxy.createProxyMiddleware({
+			target: proxyConfig.target,
+			pathRewrite: { [`^${req.originalUrl}`]: req.originalUrl },
+		});
 
 		proxy(req, res, next);
 	}

@@ -1,6 +1,6 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ProxyMiddleware } from '../middlewares/proxy.middleware';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -14,8 +14,4 @@ import { AppService } from './app.service';
 	controllers: [AppController],
 	providers: [AppService],
 })
-export class AppModule implements NestModule {
-	configure(consumer: MiddlewareConsumer) {
-		consumer.apply(ProxyMiddleware).forRoutes('*');
-	}
-}
+export class AppModule {}
