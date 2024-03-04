@@ -3,23 +3,23 @@ import React from 'react';
 import { ApiClient, Error, Model } from '@inklens/common';
 import { Button } from '@inklens/ui';
 
-async function fetchMessage(): Promise<Model.Message> {
+async function fetchTags(): Promise<Model.Tag[]> {
 	const api = ApiClient.getInstance();
-	const message = await api.request<Model.Message>('');
+	const message = await api.tags.getAllTags();
 	return message;
 }
 
-export const Message: React.FC = () => {
+export const Tags: React.FC = () => {
 	//
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [error, setError] = React.useState<Error.ApiClientError | null>(null);
-	const [message, setMessage] = React.useState<Model.Message>({ message: '' });
+	const [tags, setTags] = React.useState<Model.Tag[]>([]);
 
 	const handleClick = React.useCallback(async () => {
 		setLoading(true);
-		await fetchMessage()
-			.then((message) => {
-				setMessage(message);
+		await fetchTags()
+			.then((tags) => {
+				setTags(tags);
 			})
 			.catch((error: Error.ApiClientError) => {
 				setError(error);
@@ -31,9 +31,15 @@ export const Message: React.FC = () => {
 
 	return (
 		<>
-			<Button onClick={handleClick}>Get Gateway Message</Button>
+			<Button onClick={handleClick}>Get Tags</Button>
 			{loading ? <p>Loading...</p> : null}
-			{message.message ? <p>{message.message}</p> : null}
+			{tags ? (
+				<ul>
+					{tags.map((tag) => (
+						<li key={tag.id}>{tag.name}</li>
+					))}
+				</ul>
+			) : null}
 			{error ? <p className="text-red-500">{error.message}</p> : null}
 		</>
 	);

@@ -6,7 +6,7 @@ import * as httpProxy from 'http-proxy-middleware';
 export class ProxyMiddleware implements NestMiddleware {
 	use(req: Request, res: Response, next: NextFunction) {
 		const apiEndpoints = {
-			'/api/tags': { target: 'http://localhost:4300' },
+			'/api/tags': { target: process.env.INKLENS_API_URL_TAGS },
 		};
 
 		const proxyConfig = apiEndpoints[req.originalUrl];

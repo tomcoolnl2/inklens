@@ -18,6 +18,9 @@ export class ApiClient {
 	 */
 	public tags: TagsApiClient;
 
+	/**
+	 * @constructor
+	 */
 	constructor() {
 		this.tags = new TagsApiClient();
 	}
