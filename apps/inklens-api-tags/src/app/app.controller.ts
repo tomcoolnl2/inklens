@@ -5,7 +5,7 @@ import { Model } from '@inklens/common';
 /**
  * Controller for handling tag operations.
  */
-@Controller('tags')
+@Controller({ path: 'tags', version: '1' })
 export class AppController {
 	/**
 	 * Constructs the AppController instance.

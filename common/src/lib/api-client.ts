@@ -47,7 +47,7 @@ export class ApiClient {
 	 * @returns {Promise<T>} A promise that resolves to the response data as type T.
 	 * @throws {ApiClientError} Throws an ApiClientError if the request fails or an error occurs.
 	 */
-	public async request<T>(endpoint = '', options?: RequestInit): Promise<T> {
+	public async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
 		try {
 			const requestOptions = {
 				headers: {
