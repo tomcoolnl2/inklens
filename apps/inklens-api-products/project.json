@@ -1,0 +1,24 @@
+{
+	"name": "inklens-api-products",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/inklens-api-products/src",
+	"projectType": "application",
+	"targets": {
+		"serve": {
+			"executor": "@nx/js:node",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "inklens-api-products:build"
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "inklens-api-products:build:development"
+				},
+				"production": {
+					"buildTarget": "inklens-api-products:build:production"
+				}
+			}
+		}
+	},
+	"tags": []
+}
