@@ -1,5 +1,6 @@
-import { TagsApiClient } from '../';
 import { ApiClientError } from '../error';
+import { CategoriesApiClient } from './categories';
+import { TagsApiClient } from './tags';
 
 /**
  * Represents the API client for making requests to various endpoints.
@@ -13,17 +14,14 @@ export class ApiClient {
 	private static instance: ApiClient;
 
 	/**
-	 * The client for interacting with the tags API endpoints.
-	 * @private
+	 * The client for interacting with the tags API endpoint.
 	 */
-	public tags: TagsApiClient;
+	public tags = new TagsApiClient();
 
 	/**
-	 * @constructor
+	 * The client for interacting with the categories API endpoint.
 	 */
-	constructor() {
-		this.tags = new TagsApiClient();
-	}
+	public categories = new CategoriesApiClient();
 
 	/**
 	 * The base URL for the API, retrieved from environment variables.

@@ -1,8 +1,8 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ProxyMiddleware } from '../middlewares/proxy.middleware';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { GatewayController } from './gateway.controller';
+import { GatewayService } from './gateway.service';
 
 @Module({
 	imports: [
@@ -11,8 +11,8 @@ import { AppService } from './app.service';
 			isGlobal: true,
 		}),
 	],
-	controllers: [AppController],
-	providers: [AppService],
+	controllers: [GatewayController],
+	providers: [GatewayService],
 })
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {

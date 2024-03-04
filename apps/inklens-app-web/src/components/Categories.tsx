@@ -3,23 +3,23 @@ import React from 'react';
 import { ApiClient, Error, Model } from '@inklens/common';
 import { Button } from '@inklens/ui';
 
-async function fetchTags(): Promise<Model.Tag[]> {
+async function fetchCategories(): Promise<Model.Category[]> {
 	const api = ApiClient.getInstance();
-	const message = await api.tags.list();
-	return message;
+	const categories = await api.categories.list();
+	return categories;
 }
 
-export const Tags: React.FC = () => {
+export const Categories: React.FC = () => {
 	//
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [error, setError] = React.useState<Error.ApiClientError | null>(null);
-	const [tags, setTags] = React.useState<Model.Tag[]>([]);
+	const [data, setData] = React.useState<Model.Tag[]>([]);
 
 	const handleClick = React.useCallback(async () => {
 		setLoading(true);
-		await fetchTags()
-			.then((tags) => {
-				setTags(tags);
+		await fetchCategories()
+			.then((data) => {
+				setData(data);
 			})
 			.catch((error: Error.ApiClientError) => {
 				setError(error);
@@ -31,12 +31,12 @@ export const Tags: React.FC = () => {
 
 	return (
 		<>
-			<Button onClick={handleClick}>Get Tags</Button>
+			<Button onClick={handleClick}>Get Categories</Button>
 			{loading ? <p>Loading...</p> : null}
-			{tags ? (
+			{data ? (
 				<ul>
-					{tags.map((tag) => (
-						<li key={tag.id}>{tag.name}</li>
+					{data.map((item) => (
+						<li key={item.id}>{item.name}</li>
 					))}
 				</ul>
 			) : null}

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from '@inklens/common';
 
 @Injectable()
-export class AppService {
+export class TagsService {
 	//
 	private tags: Model.Tag[] = [
 		{ id: 0, name: 'Tag 1', slug: '/tag1' },
@@ -14,61 +14,61 @@ export class AppService {
 	 * Retrieves all tags.
 	 * @returns {Promise<Model.Tag[]>} An array of tag objects.
 	 */
-	public async getAllTags(): Promise<Model.Tag[]> {
+	public async list(): Promise<Model.Tag[]> {
 		return this.tags;
 	}
 
 	/**
 	 * Retrieves a tag by its ID.
-	 * @param {string} tagId The ID of the tag to retrieve.
+	 * @param {string} id The ID of the tag to retrieve.
 	 * @returns {Promise<Model.Tag>} The tag object if found.
 	 * @throws {NotFoundException} If no tag is found with the given ID.
 	 */
-	public async getTagById(tagId: string): Promise<Model.Tag> {
-		const tag = this.tags.find((tag) => tag.id.toString() === tagId);
+	public async getById(id: string): Promise<Model.Tag> {
+		const tag = this.tags.find((tag) => tag.id.toString() === id);
 		if (!tag) {
-			throw new NotFoundException(`Tag with ID ${tagId} not found`);
+			throw new NotFoundException(`Tag with ID ${id} not found`);
 		}
 		return tag;
 	}
 
 	/**
 	 * Creates a new tag.
-	 * @param {Model.Tag} tagData The data of the tag to create.
+	 * @param {Model.Tag} data The data of the tag to create.
 	 * @returns {Promise<Model.Tag>} The created tag object.
 	 */
-	public async createTag(tagData: Model.Tag): Promise<Model.Tag> {
-		const newTag = { ...tagData, id: this.tags.length };
+	public async create(data: Model.Tag): Promise<Model.Tag> {
+		const newTag = { ...data, id: this.tags.length };
 		this.tags.push(newTag);
 		return newTag;
 	}
 
 	/**
 	 * Updates an existing tag.
-	 * @param {string} tagId The ID of the tag to update.
-	 * @param {Model.Tag} tagData The updated data for the tag.
+	 * @param {string} id The ID of the tag to update.
+	 * @param {Model.Tag} data The updated data for the tag.
 	 * @returns {Promise<Model.Tag>} The updated tag object.
 	 * @throws {NotFoundException} If no tag is found with the given ID.
 	 */
-	public async updateTag(tagId: string, tagData: Model.Tag): Promise<Model.Tag> {
-		const index = this.tags.findIndex((tag) => tag.id.toString() === tagId);
+	public async update(id: string, data: Model.Tag): Promise<Model.Tag> {
+		const index = this.tags.findIndex((tag) => tag.id.toString() === id);
 		if (index === -1) {
-			throw new NotFoundException(`Tag with ID ${tagId} not found`);
+			throw new NotFoundException(`Tag with ID ${id} not found`);
 		}
-		this.tags[index] = { ...this.tags[index], ...tagData };
+		this.tags[index] = { ...this.tags[index], ...data };
 		return this.tags[index];
 	}
 
 	/**
 	 * Deletes a tag by its ID.
-	 * @param {string} tagId The ID of the tag to delete.
+	 * @param {string} id The ID of the tag to delete.
 	 * @returns {Promise<void>}
 	 * @throws {NotFoundException} If no tag is found with the given ID.
 	 */
-	public async deleteTag(tagId: string): Promise<void> {
-		const index = this.tags.findIndex((tag) => tag.id.toString() === tagId);
+	public async delete(id: string): Promise<void> {
+		const index = this.tags.findIndex((tag) => tag.id.toString() === id);
 		if (index === -1) {
-			throw new NotFoundException(`Tag with ID ${tagId} not found`);
+			throw new NotFoundException(`Tag with ID ${id} not found`);
 		}
 		this.tags.splice(index, 1);
 	}

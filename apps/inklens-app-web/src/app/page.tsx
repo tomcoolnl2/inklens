@@ -1,3 +1,4 @@
+import { Categories } from '../components/Categories';
 import { Message } from '../components/Message';
 import { Tags } from '../components/Tags';
 import styles from './page.module.css';
@@ -21,6 +22,9 @@ export default async function Index() {
 							<br />
 							<br />
 							<Tags />
+							<br />
+							<br />
+							<Categories />
 						</div>
 					</div>
 				</div>
